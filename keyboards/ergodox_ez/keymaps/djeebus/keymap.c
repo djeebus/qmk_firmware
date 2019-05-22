@@ -13,6 +13,27 @@ enum custom_keycodes {
   RGB_SLD
 };
 
+/*  
+DF(layer) - switches the default layer. The default layer is the always-active base layer that other layers stack on top of. See below for more about the default layer. This might be used to switch from QWERTY to Dvorak layout. (Note that this is a temporary switch that only persists until the keyboard loses power. To modify the default layer in a persistent way requires deeper customization, such as calling the set_single_persistent_default_layer function inside of process_record_user.)
+
+MO(layer) - momentarily activates layer. As soon as you let go of the key, the layer is deactivated.
+
+LM(layer, mod) - Momentarily activates layer (like MO), but with modifier(s) mod active. Only supports layers 0-15 and the left modifiers: MOD_LCTL, MOD_LSFT, MOD_LALT, MOD_LGUI (note the use of MOD_ constants instead of KC_). These modifiers can be combined using bitwise OR, e.g. LM(_RAISE, MOD_LCTL | MOD_LALT).
+
+LT(layer, kc) - momentarily activates layer when held, and sends kc when tapped. Only supports layers 0-15.
+
+OSL(layer) - momentarily activates layer until the next key is pressed. See One Shot Keys for details and additional functionality.
+
+TG(layer) - toggles layer, activating it if it's inactive and vice versa
+
+TO(layer) - activates layer and de-activates all other layers (except your default layer). This function is special, because instead of just adding/removing one layer to your active layer stack, it will completely replace your current active layers, uniquely allowing you to replace higher layers with a lower one. This is activated on keydown (as soon as the key is pressed).
+
+TT(layer) - Layer Tap-Toggle. If you hold the key down, layer is activated, and then is de-activated when you let go (like MO). If you repeatedly tap it, the layer will be toggled on or off (like TG). It needs 5 taps by default, but you can change this by defining TAPPING_TOGGLE -- for example, #define TAPPING_TOGGLE 2 to toggle on just two taps.
+
+MT(mod, kc) - The Mod-Tap key MT(mod, kc) acts like a modifier when held, and a regular keycode when tapped. In other words, you can have a key that sends Escape when you tap it, but functions as a Control or Shift key when you hold it down.
+
+
+*/
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_ergodox(
         // left hand
@@ -20,10 +41,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,             KC_Q,           KC_W,       KC_E,    KC_R,    KC_T,    KC_HOME,
         KC_CAPSLOCK,        KC_A,           KC_S,       KC_D,    KC_F,    KC_G,
         KC_LSFT,            KC_Z,    KC_X,       KC_C,    KC_V,    KC_B,    KC_END,
-        KC_LCTRL, KC_LGUI,  KC_TRNS,  KC_TRNS,    KC_LALT,
-                                                                ALT_T(KC_APP), KC_LGUI,
+        KC_LCTRL, KC_TRNS,  KC_TRNS,  KC_TRNS,    ALT_T(KC_SPACE),
+                                                                KC_TRNS, KC_TRNS,
                                                                                 KC_TRNS,
-                                                                KC_BSPACE, KC_DELETE, TT(MDIA),
+                                                                KC_BSPACE, KC_DELETE, KC_TRNS,
         // right hand
         KC_6,      KC_7,    KC_8,    KC_9,    KC_0,              KC_MINUS,           KC_EQUAL,
         KC_PGUP,     KC_Y,    KC_U,    KC_I,    KC_O,              KC_P,           KC_BSLASH,
@@ -38,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [SYMB] = LAYOUT_ergodox(
         // left hand
-        VRSN,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,
+        RESET,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,
         KC_TRNS, KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_BSLASH, KC_TRNS,
         KC_TRNS, KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_GRV,
         KC_TRNS, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD, KC_TRNS,
@@ -54,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS, KC_DOT,  KC_0,    KC_EQL,  KC_TRNS,
         RGB_TOG, RGB_SLD,
         KC_TRNS,
-        KC_TRNS, RGB_HUD, RGB_HUI
+        KC_RCTRL, RGB_HUD, RGB_HUI
     ),
 
     [MDIA] = LAYOUT_ergodox(
