@@ -13,7 +13,7 @@ enum custom_keycodes {
   RGB_SLD
 };
 
-/*  
+/*
 DF(layer) - switches the default layer. The default layer is the always-active base layer that other layers stack on top of. See below for more about the default layer. This might be used to switch from QWERTY to Dvorak layout. (Note that this is a temporary switch that only persists until the keyboard loses power. To modify the default layer in a persistent way requires deeper customization, such as calling the set_single_persistent_default_layer function inside of process_record_user.)
 
 MO(layer) - momentarily activates layer. As soon as you let go of the key, the layer is deactivated.
@@ -41,10 +41,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,             KC_Q,           KC_W,       KC_E,    KC_R,    KC_T,    KC_HOME,
         KC_CAPSLOCK,        KC_A,           KC_S,       KC_D,    KC_F,    KC_G,
         KC_LSFT,            KC_Z,    KC_X,       KC_C,    KC_V,    KC_B,    KC_END,
-        KC_LCTRL, KC_TRNS,  KC_TRNS,  KC_TRNS,    ALT_T(KC_SPACE),
+        KC_LCTRL, KC_TRNS,  KC_TRNS,  KC_LALT,    KC_SPACE,
                                                                 KC_TRNS, KC_TRNS,
                                                                                 KC_TRNS,
-                                                                KC_BSPACE, KC_DELETE, KC_TRNS,
+                                                                KC_BSPACE, KC_DELETE, KC_LCTRL,
         // right hand
         KC_6,      KC_7,    KC_8,    KC_9,    KC_0,              KC_MINUS,           KC_EQUAL,
         KC_PGUP,     KC_Y,    KC_U,    KC_I,    KC_O,              KC_P,           KC_BSLASH,
