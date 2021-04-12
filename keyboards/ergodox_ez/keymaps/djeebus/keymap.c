@@ -32,71 +32,43 @@ TT(layer) - Layer Tap-Toggle. If you hold the key down, layer is activated, and 
 
 MT(mod, kc) - The Mod-Tap key MT(mod, kc) acts like a modifier when held, and a regular keycode when tapped. In other words, you can have a key that sends Escape when you tap it, but functions as a Control or Shift key when you hold it down.
 
-
 */
+
+#define MAGIC_TAB MT(MOD_LCTL|MOD_LSFT,KC_CAPSLOCK)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [BASE] = LAYOUT_ergodox(
-        // left hand
-        KC_ESCAPE,          KC_1,           KC_2,       KC_3,    KC_4,    KC_5,    KC_6,
-        KC_TAB,             KC_Q,           KC_W,       KC_E,    KC_R,    KC_T,    KC_VOLU,
-        MT(MOD_LCTL | MOD_LSFT, KC_CAPSLOCK),        KC_A,           KC_S,       KC_D,    KC_F,    KC_G,
-        KC_LSFT,            KC_Z,    KC_X,       KC_C,    KC_V,    KC_B,    KC_VOLD,
-        KC_LCTRL, MO(MDIA),  MO(SYMB),  KC_LALT,    KC_SPACE,
-                                                                KC_TRNS, KC_TRNS,
-                                                                                KC_PGUP,
-                                                                KC_BSPACE, KC_DELETE, KC_PGDOWN,
-        // right hand
-        KC_6,      KC_7,    KC_8,    KC_9,    KC_0,              KC_MINUS,           KC_EQUAL,
-        KC_PGUP,     KC_Y,    KC_U,    KC_I,    KC_O,              KC_P,           KC_BSLASH,
-        KC_H,         KC_J,    KC_K,    KC_L,    LT(MDIA, KC_SCLN), KC_QUOT,
-        KC_PGDOWN, KC_N,    KC_M,    KC_COMM, KC_DOT,            KC_SLASH, KC_RSFT,
-        KC_SPACE,        KC_TRNS, KC_RALT, KC_RCTRL, MO(SYMB),
-
-        KC_TRNS, KC_TRNS,
-        KC_TRNS,
-        MO(MDIA), KC_LGUI, KC_ENTER
+    [BASE] = LAYOUT_ergodox_pretty(
+        KC_ESCAPE,      KC_1,       KC_2,       KC_3,    KC_4,    KC_5,    KC_6,            KC_6,       KC_7,       KC_8,     KC_9,    KC_0,    KC_MINUS,         KC_EQUAL,
+        KC_TAB,         KC_Q,       KC_W,       KC_E,    KC_R,    KC_T,    KC_PGUP,         KC_PGUP,    KC_Y,       KC_U,     KC_I,    KC_O,    KC_P,             KC_BSLASH,
+        MAGIC_TAB,      KC_A,       KC_S,       KC_D,    KC_F,    KC_G,                                 KC_H,       KC_J,     KC_K,    KC_L,    LT(MDIA,KC_SCLN), KC_QUOT,
+        KC_LSFT,        KC_Z,       KC_X,       KC_C,    KC_V,    KC_B,    KC_PGDOWN,         KC_PGDOWN,  KC_N,       KC_M,     KC_COMM, KC_DOT,  KC_SLASH,         KC_RSFT,
+        KC_LCTRL,       MO(MDIA),   MO(SYMB),   KC_LALT, KC_SPACE,                                                  KC_SPACE, KC_TRNS, KC_RALT, KC_RCTRL,         MO(SYMB),
+                                                            KC_MPRV,    KC_MNXT,            KC_TRNS,    KC_TRNS,
+                                                                        KC_VOLU,            KC_TRNS,
+                                                KC_BSPACE, KC_DELETE,  KC_VOLD,           MO(MDIA),   KC_LGUI,    KC_ENTER
     ),
 
-    [SYMB] = LAYOUT_ergodox(
-        // left hand
-        KC_TRNS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_LCBR, KC_RCBR, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_LPRN, KC_RPRN, KC_GRV,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_LBRC, KC_RBRC, KC_TILD, KC_TRNS,
-        RESET,   EPRM,    KC_TRNS, KC_TRNS, KC_TRNS,
-                                                    RGB_MOD, KC_TRNS,
-                                                                KC_F3,
-                                            RGB_VAD, RGB_VAI, KC_TRNS,
-        // right hand
-        KC_F7,      KC_F8,   KC_F9, KC_F10,  KC_F11,  KC_F12,  KC_HOME,
-        KC_TRNS,    KC_TRNS, KC_7,  KC_8,    KC_9,    KC_ASTR, KC_END,
-                    KC_TRNS, KC_4,  KC_5,    KC_6,    KC_PLUS, KC_PGUP,
-        KC_TRNS,    KC_TRNS, KC_1,  KC_2,    KC_3,    KC_BSLS, KC_PGDOWN,
-                             KC_0,  KC_TRNS, KC_DOT,  KC_EQL,  KC_TRNS,
-        RGB_TOG,    RGB_SLD,
-        KC_TRNS,
-        KC_RCTRL, RGB_HUD, RGB_HUI
+    [SYMB] = LAYOUT_ergodox_pretty(
+        KC_TRNS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                    KC_F7,      KC_F8,   KC_F9, KC_F10,  KC_F11,  KC_F12,  KC_HOME,
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_LCBR, KC_RCBR, KC_TRNS, KC_TRNS,                  KC_TRNS,    KC_TRNS, KC_7,  KC_8,    KC_9,    KC_ASTR, KC_END,
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_LPRN, KC_RPRN, KC_GRV,                                        KC_TRNS, KC_4,  KC_5,    KC_6,    KC_PLUS, KC_PGUP,
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_LBRC, KC_RBRC, KC_TILD, KC_TRNS,                  KC_TRNS,    KC_TRNS, KC_1,  KC_2,    KC_3,    KC_BSLS, KC_PGDOWN,
+        RESET,   EPRM,    KC_TRNS, KC_TRNS, KC_TRNS,                                                         KC_0,  KC_TRNS, KC_DOT,  KC_EQL,  KC_TRNS,
+                                                    RGB_MOD, KC_TRNS,                   RGB_TOG,    RGB_SLD,
+                                                                KC_F3,                  KC_TRNS,
+                                            RGB_VAD, RGB_VAI, KC_TRNS,                  KC_RCTRL, RGB_HUD, RGB_HUI
     ),
 
-    [MDIA] = LAYOUT_ergodox(
-        // left hand
-        KC_TRNS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,
-        KC_TRNS, KC_TRNS, KC_PGUP, KC_UP, KC_HOME, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_LEFT, KC_DOWN, KC_RIGHT, KC_ENTER,
-        KC_TRNS, KC_TRNS, KC_PGDOWN, KC_TRNS, KC_END, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-                                                    KC_TRNS, KC_TRNS,
-                                                                KC_TRNS,
-                                            KC_WWW_BACK, KC_TRNS, KC_WWW_FORWARD,
-        // right hand
-        KC_F7, KC_F8,   KC_F9,   KC_F10,   KC_F11,   KC_F12, KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-                KC_TRNS, KC_RCTRL, KC_RSHIFT, KC_RALT, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-                            KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS,
-        KC_TRNS,
-        KC_TRNS, KC_RGUI, KC_WBAK
+    [MDIA] = LAYOUT_ergodox_pretty(
+        KC_TRNS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,     KC_F7, KC_F8,   KC_F9,   KC_F10,   KC_F11,   KC_F12, KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_PGUP, KC_UP, KC_HOME, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_LEFT, KC_DOWN, KC_RIGHT, KC_ENTER,                       KC_TRNS, KC_RCTRL, KC_RSHIFT, KC_RALT, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_PGDOWN, KC_TRNS, KC_END, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+
+                                                    KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS,
+                                                                KC_TRNS,     KC_TRNS,
+                                            KC_WWW_BACK, KC_TRNS, KC_WWW_FORWARD,     KC_TRNS, KC_RGUI, KC_WBAK
     ),
 };
 
