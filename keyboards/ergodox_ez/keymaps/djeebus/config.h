@@ -1,3 +1,6 @@
-#include "config_common.h"
+#ifndef KEYMAP_CONFIG_H
+#define KEYMAP_CONFIG_H
 
 #define PERMISSIVE_HOLD
+
+#endif // !USERSPACE_CONFIG_H

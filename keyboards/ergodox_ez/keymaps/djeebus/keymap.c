@@ -15,37 +15,37 @@ enum custom_keycodes {
 #endif
 };
 
-#define MAGIC_CAPS MT(MOD_LCTL|MOD_LSFT,KC_CAPSLOCK)
+#define MAGIC_CAPS MT(MOD_LCTL|MOD_LSFT,KC_CAPS)
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [BASE] = LAYOUT_ergodox_pretty(
-    KC_GESC,        KC_1,       KC_2,       KC_3,    KC_4,      KC_5,      KC_6,            KC_6,       KC_7,       KC_8,     KC_9,    KC_0,    KC_MINUS,         KC_EQUAL,
-    KC_TAB,         KC_Q,       KC_W,       KC_E,    KC_R,      KC_T,      KC_PGUP,         KC_PSCREEN, KC_Y,       KC_U,     KC_I,    KC_O,    KC_P,             KC_BSLASH,
+    QK_GESC,        KC_1,       KC_2,       KC_3,    KC_4,      KC_5,      KC_6,            KC_6,       KC_7,       KC_8,     KC_9,    KC_0,    KC_MINUS,         KC_EQUAL,
+    KC_TAB,         KC_Q,       KC_W,       KC_E,    KC_R,      KC_T,      KC_PGUP,         KC_PSCR,    KC_Y,       KC_U,     KC_I,    KC_O,    KC_P,             KC_BSLS,
     MAGIC_CAPS,     KC_A,       KC_S,       KC_D,    KC_F,      KC_G,                                   KC_H,       KC_J,     KC_K,    KC_L,    LT(MDIA,KC_SCLN), KC_QUOT,
-    KC_LSFT,        KC_Z,       KC_X,       KC_C,    KC_V,      KC_B,      KC_PGDOWN,       KC_PAUSE,   KC_N,       KC_M,     KC_COMM, KC_DOT,  KC_SLASH,         KC_RSFT,
-    KC_LCTRL,       MO(MDIA),   MO(SYMB),   KC_LALT, KC_SPACE,                                                      KC_SPACE, KC_TRNS, KC_RALT, KC_RCTRL,         MO(SYMB),
+    KC_LSFT,        KC_Z,       KC_X,       KC_C,    KC_V,      KC_B,      KC_PGDN,         KC_PAUSE,   KC_N,       KC_M,     KC_COMM, KC_DOT,  KC_SLASH,         KC_RSFT,
+    MO(MDIA),       KC_LCTL,    MO(SYMB),   KC_LALT, KC_SPACE,                                                      KC_SPACE, KC_TRNS, KC_RALT, KC_RCTL,         MO(SYMB),
                                                                 KC_MPRV,   KC_MNXT,         KC_TRNS,    KC_TRNS,
                                                                            KC_VOLU,         KC_TRNS,
-                                                     KC_BSPACE, KC_DELETE, KC_VOLD,         MO(MDIA),   KC_LGUI,    KC_ENTER
+                                                     KC_BSPC,   KC_DELETE, KC_VOLD,         MO(MDIA),   KC_LGUI,    KC_ENTER
 ),
 
 [SYMB] = LAYOUT_ergodox_pretty(
     KC_TRNS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                    KC_F7,      KC_F8,   KC_F9, KC_F10,  KC_F11,  KC_F12,  KC_HOME,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_LCBR, KC_RCBR, KC_TRNS, KC_TRNS,                  KC_TRNS,    KC_TRNS, KC_7,  KC_8,    KC_9,    KC_ASTR, KC_END,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_LPRN, KC_RPRN, KC_GRV,                                        KC_TRNS, KC_4,  KC_5,    KC_6,    KC_PLUS, KC_PGUP,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_LBRC, KC_RBRC, KC_TILD, KC_TRNS,                  KC_TRNS,    KC_TRNS, KC_1,  KC_2,    KC_3,    KC_BSLS, KC_PGDOWN,
-    RESET,   EEPROM_RESET,    KC_TRNS, KC_TRNS, KC_TRNS,                                                         KC_0,  KC_TRNS, KC_DOT,  KC_EQL,  KC_TRNS,
-                                                RGB_MOD, KC_TRNS,                   RGB_TOG,    KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_LBRC, KC_RBRC, KC_TILD, KC_TRNS,                  KC_TRNS,    KC_TRNS, KC_1,  KC_2,    KC_3,    KC_BSLS, KC_PGDN,
+    QK_BOOT, EE_CLR,          KC_TRNS, KC_TRNS, KC_TRNS,                                                         KC_0,  KC_TRNS, KC_DOT,  KC_EQL,  KC_TRNS,
+                                                UG_NEXT, KC_TRNS,                   UG_TOGG,    KC_TRNS,
                                                             KC_F3,                  KC_TRNS,
-                                        RGB_VAD, RGB_VAI, KC_TRNS,                  KC_RCTRL, RGB_HUD, RGB_HUI
+                                        UG_VALD, UG_VALU, KC_TRNS,                  KC_RCTL,  UG_HUED, UG_HUEU
 ),
 
 [MDIA] = LAYOUT_ergodox_pretty(
     KC_TRNS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,     KC_F7, KC_F8,   KC_F9,   KC_F10,   KC_F11,   KC_F12, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_PGUP, KC_UP, KC_HOME, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_LEFT, KC_DOWN, KC_RIGHT, KC_ENTER,                       KC_TRNS, KC_RCTRL, KC_RSHIFT, KC_RALT, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_PGDOWN, KC_TRNS, KC_END, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_LEFT, KC_DOWN, KC_RIGHT, KC_ENTER,                       KC_TRNS, KC_RCTL, KC_RSFT, KC_RALT, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_PGDN, KC_TRNS, KC_END, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
 
                                                 KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS,
